@@ -1,0 +1,26 @@
+<div class="lg-reward-gold">
+  <span class="lg-label">Złoto (auto z ukończonych tropów)</span>
+  <div class="lg-reward-gold-row">
+    <p class="lg-title">{{gold}} zł</p>
+    <button type="button" data-action="claimGold">Odbierz złoto</button>
+  </div>
+</div>
+
+<span class="lg-label">Przedmioty</span>
+<div class="lg-reward-items">
+  {{#each items as |item @index|}}
+    <div class="lg-reward-item" data-item-uuid="{{item.uuid}}" data-index="{{@index}}">
+      <img src="{{item.img}}" />
+      <p>{{item.name}}</p>
+      {{#if ../isGM}}<i class="fas fa-times" data-action="removeItem"></i>{{/if}}
+    </div>
+  {{else}}
+    <p class="lg-empty">Brak przedmiotów.</p>
+  {{/each}}
+</div>
+
+{{#if isGM}}
+<div class="lg-reward-dropzone">
+  <i class="fas fa-hand-point-down"></i> Przeciągnij tu przedmiot z kompendium/katalogu
+</div>
+{{/if}}

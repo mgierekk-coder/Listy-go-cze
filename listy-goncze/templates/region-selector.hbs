@@ -1,0 +1,16 @@
+<div class="lg-region-grid">
+  {{#each regions as |region|}}
+    <div class="lg-region-card" data-region-id="{{region.id}}" data-action="openRegion">
+      <i class="fas fa-map-marker-alt"></i>
+      <p class="lg-title">{{region.name}}</p>
+    </div>
+  {{/each}}
+
+  {{#if isGM}}
+  <div class="lg-region-card lg-add-card">
+    <i class="fas fa-plus"></i>
+    <input id="lg-new-region-name" type="text" placeholder="Nazwa nowego regionu" />
+    <button type="button" data-action="createRegion">Utwórz</button>
+  </div>
+  {{/if}}
+</div>

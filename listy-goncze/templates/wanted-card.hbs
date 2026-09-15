@@ -1,0 +1,54 @@
+<div class="lg-card-header">
+  <img src="{{wanted.img}}" />
+  <div class="lg-card-header-main">
+    <p class="lg-title">{{wanted.name}}</p>
+    <p class="lg-sub">{{wanted.traits}}</p>
+    <div class="lg-header-stats">
+      <div><span class="lg-label">Nagroda</span><p>{{gold}} zł</p></div>
+      <div><span class="lg-label">Wyznaczona przez</span><p>{{wanted.issuer}}</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="lg-tabs">
+  <button type="button" class="{{#if (eq activeTab 'info')}}active{{/if}}" data-action="switchTab" data-tab="info">Informacje</button>
+  <button type="button" class="{{#if (eq activeTab 'inv')}}active{{/if}}" data-action="switchTab" data-tab="inv">Śledztwo</button>
+</div>
+
+{{#if (eq activeTab 'info')}}
+<div class="lg-panel">
+  <span class="lg-label">Przestępstwa</span>
+  <ul>{{#each (split wanted.crimes)}}<li>{{this}}</li>{{/each}}</ul>
+  <span class="lg-label">Region</span>
+  <p>{{wanted.regionId}}</p>
+  {{#if isGM}}<button type="button" data-action="editInfo">Edytuj</button>{{/if}}
+</div>
+{{else}}
+<div class="lg-panel">
+  <div class="lg-progress-row"><span>Postęp śledztwa</span><span>{{progress}}%</span></div>
+  <div class="lg-progress-bar"><div style="width:{{progress}}%"></div></div>
+
+  <div class="lg-node-list">
+    {{#each nodes as |n|}}
+      <div class="lg-node {{#if n.completed}}completed{{else if n.unlocked}}unlocked{{else}}locked{{/if}}" data-node-id="{{n.id}}">
+        <i class="fas {{#if n.completed}}fa-check{{else if n.unlocked}}fa-circle{{else}}fa-lock{{/if}}"></i>
+        <div class="lg-node-main">
+          <p class="lg-node-name">{{n.name}}</p>
+          <p class="lg-node-meta">DC {{n.dc}} · {{n.parentSummary}}</p>
+          {{#if n.unlocked}}{{#unless n.completed}}
+            <button type="button" data-action="rollNode">Rzut Investigation</button>
+          {{/unless}}{{/if}}
+        </div>
+      </div>
+    {{/each}}
+  </div>
+
+  <div class="lg-card-actions">
+    <button type="button" data-action="openReward">Nagroda</button>
+    {{#if isGM}}
+      <button type="button" data-action="openTreeEditor">Edytuj drzewo</button>
+      <button type="button" data-action="markCaptured">Oznacz jako schwytany</button>
+    {{/if}}
+  </div>
+</div>
+{{/if}}
