@@ -1,0 +1,14 @@
+{
+  "id": "listy-goncze",
+  "title": "Listy gończe",
+  "description": "Regiony, poszukiwani, drzewo tropów śledztwa i nagrody — młodszy kuzyn dziennika zadań.",
+  "version": "1.0.0",
+  "compatibility": { "minimum": 12, "verified": 13 },
+  "authors": [{ "name": "GM" }],
+  "esmodules": ["scripts/module.mjs"],
+  "styles": ["styles/listy-goncze.css"],
+  "socket": true,
+  "url": "",
+  "manifest": "",
+  "download": ""
+}
